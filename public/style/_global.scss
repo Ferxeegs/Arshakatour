@@ -1,0 +1,61 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  background-color: #eaecfa;
+}
+
+.page-content {
+  margin-top: 100px;
+}
+
+footer {
+  margin: 150px 135px 10px 135px;
+  p {
+    color: white;
+  }
+}
+
+.footer-container {
+  border-radius: 15px;
+  overflow: hidden;
+  padding-left: 40px;
+  background-color: rgba(2, 4, 21, 0.8) !important;
+}
+
+.footer-title {
+  font-weight: 600px;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.footer-desc {
+  font-weight: 300px;
+  font-size: 12px;
+  text-align: justify;
+}
+.footer-desc a {
+  color: white;
+}
+
+.logo {
+  width: 20px;
+}
+
+.side-pic {
+  width: 360px;
+}
+
+.form-control,
+.form-select {
+  border-radius: 10px;
+  background-color: rgba(234, 236, 250, 1);
+  border-width: 2.5px;
+}
+
+.form-text {
+  font-size: 12px;
+}

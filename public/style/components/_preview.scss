@@ -1,0 +1,73 @@
+#preview {
+  padding-top: 10px;
+}
+#preview .card-body {
+  padding-top: 63vh;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.02);
+    text-decoration: none;
+  }
+}
+
+.card-container {
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.02);
+    text-decoration: none;
+  }
+}
+
+.card {
+  width: 355px;
+  height: 499px;
+  margin-top: 10px;
+  color: white;
+  border-radius: 35px; /* Mengatur sudut melingkar */
+}
+
+.paket-jogja {
+  background-image: url("/images/paket-jogja.png");
+  background-size: cover;
+  align-items: end;
+  text-align: end;
+  align-content: end;
+
+  &:hover {
+    transform: scale(1.05);
+    text-decoration: none;
+  }
+}
+
+// .paket-bali {
+//   background-image: url("/images/paket-bali.png");
+//   background-size: cover;
+// }
+
+// .paket-bromo {
+//   background-image: url("/images/paket-bromo.png");
+//   background-size: cover;
+// }
+
+// @media (max-width: 799px) {
+//   .card {
+//     width: 355px;
+//     height: 400px;
+//   }
+// }
+
+@media (min-width: 800px) and (max-width: 1199px) {
+  .card {
+    width: 250px;
+    height: 450px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .card {
+    width: 355px;
+    height: 499px;
+  }
+}

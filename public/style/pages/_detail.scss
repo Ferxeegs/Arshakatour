@@ -1,0 +1,74 @@
+.banner-detail {
+  background-size: cover;
+  height: 668px;
+  margin-top: 80px;
+  background-image: url("/images/detail-jogja.png");
+  background-position: center;
+  border-radius: 25px;
+}
+.banner-content {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 100%;
+  color: white;
+}
+
+.banner-detail-title {
+  font-size: 92px;
+  font-weight: 600;
+}
+
+.banner-detail-title2 {
+  font-size: 40px;
+  font-weight: 600;
+}
+.banner-detail-title3 {
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  max-width: 200px;
+  border-radius: 14px;
+  background: rgba($color: #d9d9d9, $alpha: 0.7);
+}
+
+.card-detail-wisata {
+  max-width: 470px;
+  max-height: 456px;
+  flex-shrink: 0;
+  border-radius: 30px;
+  background: #ffffff;
+}
+.tujuan-wisata {
+  margin-bottom: 70px;
+}
+
+.tujuan-wisata li {
+  color: rgba(2, 4, 21, 0.8);
+  font-size: 20px;
+  font-weight: 600;
+  margin: 13px 80px;
+}
+
+.peserta-harga li {
+  display: flex;
+  color: rgba(2, 4, 21, 0.8);
+  background-color: rgba(234, 236, 250, 1);
+  margin-top: 10px;
+  border-radius: 12px;
+  padding: 8px 40px;
+  margin-left: 5px;
+}
+
+.peserta-harga li span {
+  margin-left: auto;
+}
+
+.form-reservasi {
+  width: 1037px !important;
+  max-width: 1073px !important;
+  max-height: 1000px;
+}

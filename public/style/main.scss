@@ -1,0 +1,18 @@
+// Import Bootstrap 4 Library
+@import "../vendor/bootstrap/scss/bootstrap.scss";
+
+@import "global";
+@import "fonts";
+@import "navbar";
+
+@import "pages/home";
+@import "pages/paket";
+@import "pages/kontak";
+@import "pages/blog";
+
+@import "pages/detail";
+
+@import "components/preview";
+@import "components/favorit";
+@import "components/kelebihan";
+@import "components/ketentuan";

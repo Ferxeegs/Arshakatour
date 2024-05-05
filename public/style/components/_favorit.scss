@@ -1,0 +1,90 @@
+.paket-detail-jogja {
+  background-image: url("/images/jogja.png");
+  background-size: cover;
+}
+.paket-detail-bali {
+  background-image: url("/images/bali.png");
+  background-size: cover;
+}
+.paket-detail-bromo {
+  background-image: url("/images/bromo.png");
+  background-size: cover;
+}
+
+.hari {
+  position: relative;
+  border-radius: 14px;
+  background: rgba(
+    217,
+    217,
+    217,
+    0.7
+  ); /* Gunakan rgba untuk memberikan opasitas pada background */
+  filter: blur(0.5px);
+  width: 89px;
+  height: 34px;
+  margin: 18px;
+}
+
+.hari-p {
+  text-align: center;
+  padding: 3px;
+  border-radius: 14px;
+  background: rgba(
+    217,
+    217,
+    217,
+    0.7
+  ); /* Gunakan rgba untuk memberikan opasitas pada background */
+  filter: blur(0.5px);
+  width: 89px;
+  height: 34px;
+  margin: 18px;
+}
+
+.tempat-wisata {
+  margin: 90px 0 9px 53px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.tempat-wisata li {
+  padding-top: 0;
+  margin-bottom: 18px;
+}
+
+.btn-detail {
+  position: relative;
+  border-radius: 14px;
+  background: rgba(
+    217,
+    217,
+    217,
+    0.7
+  ); /* Gunakan rgba untuk memberikan opasitas pada background */
+  filter: blur(0.5px);
+  width: 113px;
+  height: 34px;
+  margin-bottom: 20px;
+}
+
+.paket-harga {
+  display: flex;
+  position: relative;
+  border-radius: 22px;
+  background: rgba(
+    217,
+    217,
+    217,
+    0.7
+  ); /* Gunakan rgba untuk memberikan opasitas pada background */
+  filter: blur(0.5px);
+  width: 328px;
+  height: 46px;
+  margin-left: 12px;
+  padding-left: 20px;
+  align-items: center;
+  margin-bottom: 10px;
+}

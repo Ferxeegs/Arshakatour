@@ -1,0 +1,24 @@
+.ketentuan {
+  border-radius: 30px !important;
+  background: #ffffff;
+}
+
+.syarat-ketentuan li {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.accordion-header {
+  margin-bottom: 10px;
+}
+
+.accordion-icon {
+  border: solid;
+  width: 21px;
+  height: 21px;
+  text-align: center;
+  display: inline-flex; /* Menggunakan inline-flex untuk penataan yang lebih baik */
+  align-items: center; /* Posisikan di tengah secara vertikal */
+  justify-content: center; /* Posisikan di tengah secara horizontal */
+}

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Paket Wisata</title>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <link href="/style/main.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav
+      class="navbar navbar-expand-xl navbar-dark bg-dark fixed-top bg-transparent navbar-scrolled"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="index.html"
+          ><img src="/images/arshaka3.PNG" alt="" style="width: 130px"
+        /></a>
+        <button
+          class="navbar-toggler shadow-none border-0"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="sidebar offcanvas offcanvas-start"
+          tabindex="-1"
+          id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel"
+        >
+          <div class="offcanvas-header text-white border-bottom">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+              Arshaka Tour
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white shadow-none"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul
+              class="navbar-nav justify-content-end flex-grow-1 mx-auto mb-lg-0 ps-5"
+            >
+              <li class="nav-item mx-3 ps-5">
+                <a class="nav-link active" aria-current="page" href="index.html"
+                  >Paket Wisata</a
+                >
+              </li>
+              <li class="nav-item mx-3">
+                <a class="nav-link" href="kontak.html">Kontak</a>
+              </li>
+              <li class="nav-item mx-3 pe-5">
+                <a class="nav-link" href="travel.html">Travel Blog</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Banner -->
+    <div class="banner-paket container" id="paket">
+      <div
+        class="banner-content container text-center"
+        data-aos="zoom-in-up"
+        data-aos-delay="150"
+      >
+        <div>
+          <p class="banner-paket-title2" id="banner-title2">Jogjakarta</p>
+          <p class="banner-paket-title" id="banner-title">Paket Wisata</p>
+          <p class="banner-paket-title3" id="banner-description">description</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tempat Wisata -->
+    <section class="container mt-4">
+      <div class="row">
+        <div class="col-12">
+          <p class="fs-3 fw-bold section-title">Pilih Paket Liburan</p>
+        </div>
+        <div class="col-sm-4 mb-3 mb-sm-0">
+          <div
+            class="card flex-column paket-detail-jogja text-light"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <p class="hari-p text-light">1 Hari</p>
+            <ul class="tempat-wisata list-unstyled">
+              <li>Borobudur</li>
+              <li>Pule Payung</li>
+              <li>Pantai Parangtritis</li>
+              <li>Malioboro</li>
+              <li>Dll</li>
+              <li>
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-detail"
+                  onclick="redirectToDetail()"
+                >
+                  Detail
+                </button>
+              </li>
+            </ul>
+            <p class="paket-harga fs-5">
+              Paket Jogja <span class="ms-5 fw-bold">Rp 250.000</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Paket Wisata -->
+    <section id="preview" class="container">
+      <div class="row align-items-center fs-3 fw-bold">
+        <div class="col-12 pt-5">
+          <p class="fs-3 fw-bold pt-2 section-title">Paket Wisata Lainnya</p>
+        </div>
+
+        <div class="col-md-3 mb-3 mb-sm-0 align-items-center card-container">
+          <div
+            class="card align-items-center paket-jogja"
+            data-background="/images/paket-jogja-banner.png"
+            data-title="Paket Wisata"
+            data-subtitle="Jogjakarta"
+            data-description="Mau liburan ke Jogja namun budget terbatas? Anda tidak perlu khawatir, salsa wisata menyediakan paket wisata Jogja murah sudah termasuk penginapan dan transportasinya. Dengan demikian perjalanan tour liburan Anda akan menjadi lebih praktis dan hemat. Selain itu, Anda juga dapat memodifikasi (custom tour) paket wisata yang telah kami tawarkan sesuai dengan keinginan."
+            data-target="paket.html"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="card-body">
+              <p class="card-title fs-3 fw-bold">Paket Jogja</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3 offset-1 card-container">
+          <div
+            class="card align-items-center paket-bali"
+            data-background="/images/paket-bali-banner.png"
+            data-title="Paket Wisata"
+            data-subtitle="Bali"
+            data-description="Mau liburan ke Bali namun budget terbatas? Anda tidak perlu khawatir, salsa wisata menyediakan paket wisata Jogja murah sudah termasuk penginapan dan transportasinya. Dengan demikian perjalanan tour liburan Anda akan menjadi lebih praktis dan hemat. Selain itu, Anda juga dapat memodifikasi (custom tour) paket wisata yang telah kami tawarkan sesuai dengan keinginan."
+            data-target="pages/paket.html"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <div class="card-body">
+              <p class="card-title fs-3 fw-bold">Paket Bali</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3 offset-1 card-container">
+          <div
+            class="card align-items-center paket-bromo"
+            data-background="/images/paket-bromo-banner.png"
+            data-title="Paket Wisata"
+            data-subtitle="Bromo"
+            data-description="Mau liburan ke Bromo namun budget terbatas? Anda tidak perlu khawatir, salsa wisata menyediakan paket wisata Jogja murah sudah termasuk penginapan dan transportasinya. Dengan demikian perjalanan tour liburan Anda akan menjadi lebih praktis dan hemat. Selain itu, Anda juga dapat memodifikasi (custom tour) paket wisata yang telah kami tawarkan sesuai dengan keinginan."
+            data-target="pages/paket.html"
+            data-aos="fade-up"
+            data-aos-delay="600"
+          >
+            <div class="card-body">
+              <p class="card-title fs-3 fw-bold">Paket Bromo</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Keunggulan -->
+    <section class="container">
+      <div class="row">
+        <div
+          data-aos="fade-right"
+          data-aos-offset="300"
+          data-aos-easing="ease-in-sine"
+        >
+          <div class="col-12 fs-3 mt-5 pt-5 fw-bolder section-title ps-0">
+            Apa yang membuat kami unggul?
+          </div>
+          <div class="col-12 ps-0">
+            <p class="section3-desc mt-3">
+              Selamat datang di layanan travel wisata terbaik kami! Temukan
+              pengalaman perjalanan yang tak terlupakan dengan menggunakan
+              Arshaka Tour yang memiliki berbagai kelebihan yang membuat
+              perjalanan Anda lebih nyaman dan menyenangkan.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-7">
+          <p class="fs-3 fw-bolder section-title mb-5" data-aos="fade-right">
+            Kelebihan Kami
+          </p>
+          <ul class="kelebihan list-unstyled fs-5 fw-bold">
+            <li data-aos="zoom-out-right" data-aos-delay="100">
+              Destinasi Menakjubkan
+            </li>
+            <li data-aos="zoom-out-right" data-aos-delay="200">
+              Paket All-Inclusive
+            </li>
+            <li data-aos="zoom-out-right" data-aos-delay="300">
+              Harga Terjangkau
+            </li>
+            <li data-aos="zoom-out-right" data-aos-delay="400">
+              Pemandu Wisata Proffesional
+            </li>
+            <li data-aos="zoom-out-right" data-aos-delay="450">
+              Kepuasan Pelanggan Utama
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-4 pt-5">
+          <img
+            data-aos="zoom-in-up"
+            data-aos-delay="500"
+            src="/images/ranting.png"
+            alt=""
+            class="side-pic w-auto"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-3 footer-container">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <p class="footer-title">arshakaTour</p>
+            <p class="footer-desc">
+              Rencana perjalanan sebenarnya bukanlah sebuah instrumen, melainkan
+              sebuah mekanisme penyampaian atau strategi bagi sebagian besar
+              orang lain
+            </p>
+            <a href="#"
+              ><img src="/images/arshaka3.PNG" alt="" style="width: 130px"
+            /></a>
+          </div>
+          <div class="col-md-3 offset-1">
+            <p class="footer-title">Company</p>
+            <ul class="list-unstyled text-decoration-none footer-desc">
+              <li class="mb-1"><a href="#">About Us</a></li>
+              <li class="mb-1"><a href="#">Destinasi</a></li>
+              <li><a href="#">Travel Blog</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <p class="footer-title">Support</p>
+            <div class="row">
+              <div class="col-2">
+                <ul class="list-unstyled footer-desc">
+                  <li class="mb-1"><a href="#">WhatsApp</a></li>
+                  <li><a href="#">Telegram</a></li>
+                </ul>
+              </div>
+              <div class="col-1 offset-6">
+                <a href=""
+                  ><img src="images/instagram.svg" alt="instagram" class="logo"
+                /></a>
+                <a href="">
+                  <img src="images/facebook.svg" alt="facebook" class="logo" />
+                </a>
+                <a href="">
+                  <img src="images/youtube.svg" alt="youtube" class="logo"
+                /></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="mt-4 mx-auto align-items-center text-center">
+          &copy; CV. Arshaka Jaya Kresindo | All Right Reserved 2023
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/vendor/jquery/jquery.slim.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+
+    <script>
+      function redirectToDetail() {
+        window.location.href = "detail.html";
+      }
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var selectedPackage = JSON.parse(
+          localStorage.getItem("selectedPackage")
+        );
+
+        if (selectedPackage) {
+          var banner = document.getElementById("paket");
+          var titleElement = document.getElementById("banner-title");
+          var subtitleElement = document.getElementById("banner-title2");
+          var descriptionElement =
+            document.getElementById("banner-description");
+
+          banner.style.backgroundImage =
+            'url("' + selectedPackage.background + '")';
+          titleElement.innerText = selectedPackage.title;
+          subtitleElement.innerText = selectedPackage.subtitle;
+          descriptionElement.innerText = selectedPackage.description;
+
+          localStorage.removeItem("selectedPackage");
+        }
+      });
+    </script>
+    <script>
+      (function (w, d, s, u) {
+        w.gbwawc = {
+          url: u,
+          options: {
+            waId: "+62 8973859194",
+            siteName: "Arshk",
+            siteTag: "Arshktour",
+            siteLogo: "https://waw.gallabox.com/chatbotavatars/4.png",
+            widgetPosition: "RIGHT",
+            triggerMessage: "Hubungi Kami",
+            welcomeMessage: "Halo, selamat datang di Arshaka Tour",
+            brandColor: "#25D366",
+            messageText: "Ada yang bisa kami bantu?",
+            replyOptions: ["Pesan paket wisata", "Lainnya", ""],
+          },
+        };
+        var h = d.getElementsByTagName(s)[0],
+          j = d.createElement(s);
+        j.async = true;
+        j.src = u + "/whatsapp-widget.min.js?_=" + Math.random();
+        h.parentNode.insertBefore(j, h);
+      })(window, document, "script", "https://waw.gallabox.com");
+    </script>
+  </body>
+</html>

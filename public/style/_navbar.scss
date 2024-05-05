@@ -1,0 +1,57 @@
+.navbar {
+  /* margin: 0 200px; */
+  transition: background-color 0.5s ease-in-out; /* Tambahkan transisi warna */
+}
+
+.navbar-nav .nav-link {
+  color: white !important;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  margin-top: 5px;
+  margin-right: 20px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.navbar-brand {
+  margin-right: auto; /* Brand di sebelah kiri */
+  margin-left: 50px;
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.navbar-scrolled {
+  background-color: #353644 !important; /* Mengatur warna latar belakang transparan */
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 991px) {
+  .sidebar {
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar {
+    max-width: 100%; /* Set maximum width to 100% for smaller screens */
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .navbar-nav .nav-link {
+    margin-top: 10px; /* Adjust margin for better spacing */
+    margin-right: 0;
+  }
+
+  .navbar-brand {
+    margin-left: 15px; /* Adjust margin for better spacing */
+  }
+}
