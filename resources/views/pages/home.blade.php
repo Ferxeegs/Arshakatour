@@ -7,49 +7,57 @@ Home
 @push('addon-style')
     <style>
         #preview {
-  padding-top: 10px;
-}
-#preview .card-body {
-  padding-top: 63vh;
-  transition: all 0.3s ease-in-out;
+            padding-top: 10px;
+        }
+        #preview .card-body {
+            padding-top: 63vh;
+            transition: all 0.3s ease-in-out;
 
-  &:hover {
-    transform: scale(1.02);
-    text-decoration: none;
-  }
-}
+            &:hover {
+                transform: scale(1.02);
+                text-decoration: none;
+            }
+        }
 
-.card-container {
-  transition: all 0.3s ease-in-out;
+        .card-container {
+            transition: all 0.3s ease-in-out;
 
-  &:hover {
-    transform: scale(1.02);
-    text-decoration: none;
-  }
-}
+            &:hover {
+                transform: scale(1.02);
+                text-decoration: none;
+            }
+        }
 
-.card {
-  width: 300px;
-  height: 499px;
-  margin-top: 10px;
-  color: white;
-  border-radius: 35px; /* Mengatur sudut melingkar */
-}
+        .card {
+            width: 300px;
+            height: 499px;
+            margin-top: 10px;
+            color: white;
+            border-radius: 35px; /* Mengatur sudut melingkar */
+            overflow: hidden; /* Supaya gambar yang lebih besar dari kartu tidak keluar dari kartu */
+        }
 
-@media (min-width: 800px) and (max-width: 1199px) {
-  .card {
-    width: 250px;
-    height: 450px;
-  }
-}
+        .card img {
+            width: 100%;
+            height: 100%; /* Menyesuaikan tinggi gambar dengan tinggi kartu */
+            object-fit: cover; /* Menjaga rasio gambar tetap proporsional */
+            border-top-left-radius: 35px;
+            border-top-right-radius: 35px;
+        }
 
-@media (min-width: 1200px) {
-  .card {
-    width: 350px;
-    height: 499px;
-  }
-}
+        @media (min-width: 800px) and (max-width: 1199px) {
+            .card {
+                width: 250px;
+                height: 450px;
+            }
+        }
 
+        @media (min-width: 1200px) {
+            .card {
+                width: 350px;
+                height: 499px;
+            }
+        }
     </style>
 @endpush
 
@@ -171,9 +179,8 @@ Home
 <script>
     document.addEventListener("DOMContentLoaded", async function() {
         try {
-            const response = await axios.get('http://arshakajaya.test/api/paket');
+            const response = await axios.get('http://arshakajaya.test/api/destinasi');
 
-            // Check for successful response
             if (response.status !== 200) {
                 console.error('Error fetching data. Status:', response.status);
                 return;
@@ -186,13 +193,11 @@ Home
 
             const paketContainer = document.getElementById('paketContainer');
 
-            // Check if the container element exists
             if (!paketContainer) {
                 console.error('Container element not found.');
                 return;
             }
 
-            // Clear any existing content in the container
             paketContainer.innerHTML = '';
 
             if (data.data && Array.isArray(data.data.data)) {
@@ -201,7 +206,6 @@ Home
                         'col-md-3 mb-3 mb-sm-0 align-items-center card-container' :
                         'col-md-3 mb-3 mb-sm-0 offset-sm-1 align-items-center card-container';
 
-                    // If it's the start of a new row, create a new row container
                     if (index % 3 === 0) {
                         const rowContainer = document.createElement('div');
                         rowContainer.classList.add('row');
@@ -209,37 +213,33 @@ Home
                     }
 
                     const cardHTML = `
-                    <div class="${cardContainerClass}" data-aos="fade-up" data-aos-delay="200">
-                        <div class="card align-items-center paket-jogja"
-                            style="background-image: url('${paket.gambar}'); background-size: cover; align-items: end; text-align: end; align-content: end;"
-                            data-title="Paket Wisata"
-                            data-subtitle="${paket.nama}"
-                            data-description="${paket.deskripsi}"
-                            data-paket-id="${paket.id}">
-                            <div class="card-body">
-                                <p class="card-title fs-3 fw-bold">${paket.nama}</p>
+                        <div class="${cardContainerClass}" data-aos="fade-up" data-aos-delay="200">
+                            <div class="card align-items-center paket-jogja"
+                                style="background-image: url('${paket.gambar}'); background-size: cover; align-items: end; text-align: end; align-content: end;"
+                                data-title="Paket Wisata"
+                                data-subtitle="${paket.nama_destinasi}"
+                                data-description="${paket.deskripsi}"
+                                data-paket-id="${paket.id}">
+                                <div class="card-body">
+                                    <p class="card-title fs-3 fw-bold">${paket.nama_destinasi}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                `;
-                    // Append the card HTML to the last row container
+                    `;
                     paketContainer.lastElementChild.innerHTML += cardHTML;
                 });
 
-                // Check if there are remaining cards after the loop
                 const remainingCards = data.data.data.length % 3;
                 if (remainingCards > 0) {
-                    // If there are remaining cards, create a new row container
                     const rowContainer = document.createElement('div');
                     rowContainer.classList.add('row');
                     paketContainer.appendChild(rowContainer);
                 }
 
-                // Add event listener for clicking on cards
                 paketContainer.querySelectorAll('.paket-jogja').forEach(card => {
                     card.addEventListener('click', function() {
                         const paketId = this.getAttribute('data-paket-id');
-                        window.location.href = `/paket/${paketId}`; // Redirect to the paket page
+                        window.location.href = `/paket/${paketId}`;
                     });
                 });
             } else {
@@ -251,32 +251,46 @@ Home
     });
 </script>
 
+
+
 <script>
-    document.addEventListener("DOMContentLoaded", async function() {
-        try {
-            const response = await axios.get('http://arshakajaya.test/api/paket');
+   document.addEventListener("DOMContentLoaded", async function() {
+    try {
+        const response = await axios.get('http://arshakajaya.test/api/paketwisata');
 
-            if (response.status !== 200) {
-                console.error('Error fetching data. Status:', response.status);
-                return;
-            }
+        if (response.status !== 200) {
+            console.error('Error fetching data. Status:', response.status);
+            return;
+        }
 
-            const data = response.data;
+        const data = response.data;
 
-            console.log('API Response:', response);
-            console.log('Data:', data);
+        console.log('API Response:', response);
+        console.log('Data:', data);
 
-            const destinasiContainer = document.getElementById('destinasiContainer');
+        const destinasiContainer = document.getElementById('destinasiContainer');
 
-            if (!destinasiContainer) {
-                console.error('Container element not found.');
-                return;
-            }
+        if (!destinasiContainer) {
+            console.error('Container element not found.');
+            return;
+        }
 
-            destinasiContainer.innerHTML = '';
+        destinasiContainer.innerHTML = '';
 
-            if (data.data && Array.isArray(data.data.data)) {
-                data.data.data.forEach((paket) => {
+        let destinasiIDList = []; // Menyimpan ID destinasi yang sudah ditampilkan
+        let cardCount = 0; // Menyimpan jumlah card yang sudah ditampilkan
+
+        if (data.data && Array.isArray(data.data.data)) {
+            data.data.data.forEach((paket) => {
+                // Periksa apakah sudah ada 3 card yang ditampilkan
+                if (cardCount >= 3) {
+                    return; // Jika sudah mencapai batas, hentikan iterasi
+                }
+                
+                // Periksa apakah destinasi ID sudah ditampilkan sebelumnya
+                if (!destinasiIDList.includes(paket.destinasi.id)) {
+                    const harga = paket.price_details.length > 0 ? paket.price_details[0].harga : ''; // Ambil harga dari elemen pertama dalam price_details
+
                     const cardDiv = document.createElement('div');
                     cardDiv.classList.add('col-sm-4', 'mb-3', 'mb-sm-0');
 
@@ -289,14 +303,12 @@ Home
                     cardInnerDiv.style.backgroundImage = `url(${paket.gambar || ''})`;
                     cardInnerDiv.style.backgroundSize = 'cover';
 
+                    const subdestinasiList = paket.subdestinasi.map(subdest => `<li class="subdestinasi">${subdest.subdestinasi || ''}</li>`).join('');
+
                     const cardHTML = `
                         <p class="hari-p text-light">${paket.durasi || ''} Hari</p>
                         <ul class="tempat-wisata list-unstyled">
-                            <li>${paket.tujuan_wisata1 || ''}</li>
-                            <li>${paket.tujuan_wisata2 || ''}</li>
-                            <li>${paket.tujuan_wisata3 || ''}</li>
-                            <li>${paket.tujuan_wisata4 || ''}</li>
-                            <li>${paket.tujuan_wisata5 || ''}</li>
+                            ${subdestinasiList}
                             <li>
                                 <button type="button" class="btn btn-secondary btn-detail">
                                     Detail
@@ -304,7 +316,7 @@ Home
                             </li>
                         </ul>
                         <p class="paket-harga fs-5">
-                            ${paket.nama || ''} <span class="ms-5 fw-bold">Rp ${paket.harga || ''}</span>
+                            <span >${paket.nama_paket || ''}</span> <span class="ms-5 fw-bold">Rp ${harga}</span> <!-- Tampilkan nama paket dan harga -->
                         </p>
                     `;
 
@@ -321,14 +333,23 @@ Home
                             window.location.href = `/details/${paket.id}`;
                         });
                     }
-                });
 
-                AOS.init();
-            } else {
-                console.error('Invalid or null data structure:', data);
-            }
-        } catch (error) {
-            console.error('Error fetching data:', error);
+                    destinasiIDList.push(paket.destinasi.id); // Tambahkan destinasi ID ke dalam list
+                    cardCount++; // Tambahkan jumlah card yang sudah ditampilkan
+                }
+            });
+
+            AOS.init();
+        } else {
+            console.error('Invalid or null data structure:', data);
         }
-    });
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+});
+
+
+
 </script>
+
+

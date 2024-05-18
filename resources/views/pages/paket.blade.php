@@ -448,7 +448,7 @@ Paket Wisata
             url: u,
             options: {
                 waId: "+62 8973859194",
-                siteName: "Arshk",
+                siteName: "Mas Fuad",
                 siteTag: "Arshktour",
                 siteLogo: "https://waw.gallabox.com/chatbotavatars/4.png",
                 widgetPosition: "RIGHT",
@@ -486,7 +486,7 @@ Paket Wisata
         // Cek jika package ID adalah nomor yang valid
         if (!isNaN(packageId)) {
             // Lakukan pengambilan data dari API dengan Axios
-            axios.get('http://arshakajaya.test/api/paket')
+            axios.get('http://arshakajaya.test/api/destinasi')
                 .then(response => {
                     const responseData = response.data;
                     console.log('Fetched data:', responseData);
@@ -503,7 +503,7 @@ Paket Wisata
                         const packageDescription = document.getElementById('banner-description');
                         const banner = document.getElementById('paket');
 
-                        packageTitle.textContent = currentPackage.nama; // Memperbarui judul paket
+                        packageTitle.textContent = currentPackage.nama_destinasi; // Memperbarui judul paket
                         packageDescription.textContent = currentPackage.deskripsi; // Memperbarui deskripsi paket
 
                         // Set background image dynamically
@@ -524,7 +524,7 @@ Paket Wisata
 <script>
     document.addEventListener("DOMContentLoaded", async function() {
         try {
-            const response = await axios.get('http://arshakajaya.test/api/paket');
+            const response = await axios.get('http://arshakajaya.test/api/destinasi');
 
             // Check for successful response
             if (response.status !== 200) {
@@ -566,11 +566,11 @@ Paket Wisata
                         <div class="card align-items-center paket-jogja"
                             style="background-image: url('${paket.gambar}'); background-size: cover; align-items: end; text-align: end; align-content: end;"
                             data-title="Paket Wisata"
-                            data-subtitle="${paket.nama}"
+                            data-subtitle="${paket.nama_destinasi}"
                             data-description="${paket.deskripsi}"
                             data-paket-id="${paket.id}">
                             <div class="card-body">
-                                <p class="card-title fs-3 fw-bold">${paket.nama}</p>
+                                <p class="card-title fs-3 fw-bold">${paket.nama_destinasi}</p>
                             </div>
                         </div>
                     </div>
@@ -606,96 +606,102 @@ Paket Wisata
 
 <script>
     document.addEventListener("DOMContentLoaded", async function() {
-        try {
-            const urlParts = window.location.pathname.split('/');
-            const destinasiId = urlParts[urlParts.length - 1];
+    try {
+        // Ambil destinasi ID dari URL atau elemen lain
+        const urlParams = window.location.pathname.split('/');
+        const destinasiId = urlParams[urlParams.length - 1];
 
-            if (!destinasiId) {
-                console.error('Destinasi ID tidak tersedia.');
-                return;
-            }
-            
-            const response = await axios.get(`http://arshakajaya.test/api/destinasi`);
-
-            if (response.status !== 200) {
-                console.error('Error fetching data. Status:', response.status);
-                return;
-            }
-
-            const data = response.data;
-
-            console.log('API Response:', response);
-            console.log('Data:', data);
-
-            const destinasiContainer = document.getElementById('destinasiContainer');
-
-            if (!destinasiContainer) {
-                console.error('Container element not found.');
-                return;
-            }
-
-            destinasiContainer.innerHTML = '';
-
-            if (data.data.data && Array.isArray(data.data.data)) {
-                const filteredData = data.data.data.filter(paket => paket.destinasi_id == destinasiId);
-
-                console.log('Filtered Data:', filteredData); // Cek apakah data terfilter dengan benar
-
-                filteredData.forEach((paket) => {
-                    const cardDiv = document.createElement('div');
-                    cardDiv.classList.add('col-sm-4', 'mb-3', 'mb-sm-0');
-
-                    const cardInnerDiv = document.createElement('div');
-                    cardInnerDiv.classList.add('card', 'flex-column', 'paket-detail-jogja',
-                        'text-light');
-                    cardInnerDiv.setAttribute('data-aos', 'fade-up');
-                    cardInnerDiv.setAttribute('data-aos-delay', '100');
-
-                    cardInnerDiv.style.backgroundImage = `url(${paket.gambar || ''})`;
-                    cardInnerDiv.style.backgroundSize = 'cover';
-
-                    const cardHTML = `
-                        <p class="hari-p text-light">${paket.durasi || ''} Hari</p>
-                        <ul class="tempat-wisata list-unstyled">
-                            <li>${paket.tujuan_wisata1 || ''}</li>
-                            <li>${paket.tujuan_wisata2 || ''}</li>
-                            <li>${paket.tujuan_wisata3 || ''}</li>
-                            <li>${paket.tujuan_wisata4 || ''}</li>
-                            <li>${paket.tujuan_wisata5 || ''}</li>
-                            <li>
-                                <button type="button" class="btn btn-secondary btn-detail">
-                                    Detail
-                                </button>
-                            </li>
-                        </ul>
-                        <p class="paket-harga fs-5">
-                            ${paket.nama_pilihan || ''} <span class="ms-5 fw-bold">Rp ${paket.harga || ''}</span>
-                        </p>
-                    `;
-
-                    cardInnerDiv.innerHTML = cardHTML;
-                    cardDiv.appendChild(cardInnerDiv);
-
-                    destinasiContainer.appendChild(cardDiv);
-
-                    // Mengambil tombol detail dan menambahkan event listener
-                    const btnDetail = cardDiv.querySelector('.btn-detail');
-                    if (btnDetail) {
-                        btnDetail.addEventListener('click', function() {
-                            // Redirect ke halaman detail dengan menyertakan ID paket
-                            window.location.href = `/details/${paket.id}`;
-                        });
-                    }
-                });
-
-                AOS.init();
-            } else {
-                console.error('Invalid or null data structure:', data);
-            }
-        } catch (error) {
-            console.error('Error fetching data:', error);
+        if (!destinasiId) {
+            console.error('Destinasi ID not provided in URL');
+            return;
         }
-    });
+
+        // Log the destinasiId for debugging
+        console.log('Destinasi ID:', destinasiId);
+
+        // Permintaan API dengan destinasi ID sebagai parameter
+        const apiUrl = `http://arshakajaya.test/api/paketwisata?destinasi_id=${destinasiId}`;
+        console.log('API URL:', apiUrl);  // Log the API URL for debugging
+        const response = await axios.get(apiUrl);
+
+        if (response.status !== 200) {
+            console.error('Error fetching data. Status:', response.status);
+            return;
+        }
+
+        const data = response.data;
+
+        // Log the response data for debugging
+        console.log('API Response:', response);
+        console.log('Data:', data);
+
+        const destinasiContainer = document.getElementById('destinasiContainer');
+
+        if (!destinasiContainer) {
+            console.error('Container element not found.');
+            return;
+        }
+
+        destinasiContainer.innerHTML = '';
+
+        if (data.data && Array.isArray(data.data.data)) {
+            const filteredPaket = data.data.data.filter(paket => paket.destinations_id == destinasiId);
+            console.log('Filtered Paket:', filteredPaket);  // Log filtered results for debugging
+
+            filteredPaket.forEach((paket) => {
+                const harga = paket.price_details.length > 0 ? paket.price_details[0].harga : '';
+
+                const cardDiv = document.createElement('div');
+                cardDiv.classList.add('col-sm-4', 'mb-3', 'mb-sm-0');
+
+                const cardInnerDiv = document.createElement('div');
+                cardInnerDiv.classList.add('card', 'flex-column', 'paket-detail-jogja', 'text-light');
+                cardInnerDiv.setAttribute('data-aos', 'fade-up');
+                cardInnerDiv.setAttribute('data-aos-delay', '100');
+
+                cardInnerDiv.style.backgroundImage = `url(${paket.gambar || ''})`;
+                cardInnerDiv.style.backgroundSize = 'cover';
+
+                const subdestinasiList = paket.subdestinasi.map(subdest => `<li class="subdestinasi">${subdest.subdestinasi || ''}</li>`).join('');
+
+                const cardHTML = `
+                    <p class="hari-p text-light">${paket.durasi || ''} Hari</p>
+                    <ul class="tempat-wisata list-unstyled">
+                        ${subdestinasiList}
+                        <li>
+                            <button type="button" class="btn btn-secondary btn-detail">
+                                Detail
+                            </button>
+                        </li>
+                    </ul>
+                    <p class="paket-harga fs-5">
+                        <span >${paket.nama_paket || ''}</span> <span class="ms-5 fw-bold">Rp ${harga}</span>
+                    </p>
+                `;
+
+                cardInnerDiv.innerHTML = cardHTML;
+                cardDiv.appendChild(cardInnerDiv);
+
+                destinasiContainer.appendChild(cardDiv);
+
+                const btnDetail = cardDiv.querySelector('.btn-detail');
+                if (btnDetail) {
+                    btnDetail.addEventListener('click', function() {
+                        window.location.href = `/details/${paket.id}`;
+                    });
+                }
+            });
+
+            AOS.init();
+        } else {
+            console.error('Invalid or null data structure:', data);
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+});
+
+
 </script>
 
 @endpush

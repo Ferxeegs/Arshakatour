@@ -22,3 +22,6 @@
   align-items: center; /* Posisikan di tengah secara vertikal */
   justify-content: center; /* Posisikan di tengah secara horizontal */
 }
+.clicked {
+  transform: rotate(45deg); /* Putar ikon menjadi tanda + */
+}

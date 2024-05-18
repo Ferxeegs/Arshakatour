@@ -6,41 +6,32 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PaketWisata extends Model
+class Paketwisata extends Model
 {
     use HasFactory, SoftDeletes;
-
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $fillable = [
-        'nama',
-        'harga',
-        'tujuan_wisata1',
-        'tujuan_wisata2',
-        'tujuan_wisata3',
-        'tujuan_wisata4',
-        'tujuan_wisata5',
+        'nama_paket',
         'durasi',
         'gambar',
-        'destinasi_id',
-        'detail1',
-        'detail2',
-        'detail3',
-        'detail4',
-        'detail5',
-        'detail6',
+        'destinations_id',
+        
     ];
 
-    /**
-     * Relationship with DestinasiWisata model.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function destinasi()
     {
-        return $this->belongsTo(DestinasiWisata::class, 'destinasi_id');
+        return $this->belongsTo(Destination::class, 'destinations_id');
+    }
+    public function subdestinasi()
+    {
+        return $this->hasMany(Subdestination::class, 'paketwisatas_id', 'id');
+    }
+    public function priceDetails()
+    {
+        return $this->hasMany(PriceDetail::class, 'paketwisatas_id', 'id');
     }
 }

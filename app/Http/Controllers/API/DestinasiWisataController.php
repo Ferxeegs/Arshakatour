@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
-use App\Models\DestinasiWisata;
+use App\Models\Destination;
 use Illuminate\Http\Request;
 
 class DestinasiWisataController extends Controller
@@ -13,17 +13,11 @@ class DestinasiWisataController extends Controller
     {
         $id = $request->input('id');
         $limit = $request->input('limit');
-        $nama = $request->input('nama');
-        $tujuan_wisata = [];
-        for ($i = 1; $i <= 5; $i++) {
-            $tujuan_wisata[] = $request->input('tujuanwisata'.$i);
-        }
+        $nama = $request->input('nama_destinasi');
         $deskripsi = $request->input('deskripsi');
-        $durasi = $request->input('durasi');
-        $harga = $request->input('harga');
         $gambar = $request->input('gambar');
 
-        $query = DestinasiWisata::query();
+        $query = Destination::query();
 
         if ($id) {
             $destination = $query->with('paket')->find($id);
@@ -35,31 +29,11 @@ class DestinasiWisataController extends Controller
         }
 
         if ($nama) {
-            $query->where('nama', 'like', '%' . $nama . '%');
+            $query->where('nama_destinasi', 'like', '%' . $nama . '%');
         }
-
-        foreach ($tujuan_wisata as $tujuan) {
-            if ($tujuan) {
-                $query->where(function ($q) use ($tujuan) {
-                    for ($i = 1; $i <= 5; $i++) {
-                        $q->orWhere('tujuan_wisata'.$i, 'like', '%' . $tujuan . '%');
-                    }
-                });
-            }
-        }
-
         if ($deskripsi) {
             $query->where('deskripsi', 'like', '%' . $deskripsi . '%');
         }
-
-        if ($durasi) {
-            $query->where('durasi', 'like', '%' . $durasi . '%');
-        }
-
-        if ($harga) {
-            $query->where('harga', 'like', '%' . $harga . '%');
-        }
-
         if ($gambar) {
             $query->where('gambar', 'like', '%' . $gambar . '%');
         }

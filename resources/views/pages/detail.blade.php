@@ -230,17 +230,16 @@ Detail
     }
 
     .accordion-icon {
-        border: solid;
-        width: 21px;
-        height: 21px;
-        text-align: center;
-        display: inline-flex;
-        /* Menggunakan inline-flex untuk penataan yang lebih baik */
-        align-items: center;
-        /* Posisikan di tengah secara vertikal */
-        justify-content: center;
-        /* Posisikan di tengah secara horizontal */
-    }
+            border: solid;
+            width: 21px;
+            height: 21px;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease; /* Tambahkan transisi untuk efek animasi */
+        }
+    
 
     .kelebihan li {
     border-radius: 20px;
@@ -735,26 +734,26 @@ Detail
     // Function to update content based on API data
     function updateBannerContent(apiData, id) {
         // Check if the API data contains the expected structure
-        if (apiData && apiData.data && apiData.data.data && Array.isArray(apiData.data.data) && apiData.data.data.length > 0) {
-            // Find the destination with matching ID
-            const destination = apiData.data.data.find(dest => dest.id == id);
+        if (apiData && apiData.data && Array.isArray(apiData.data.data) && apiData.data.data.length > 0) {
+            // Find the package with matching ID
+            const package = apiData.data.data.find(paket => paket.id == id);
 
-            // Check if destination is found
-            if (destination) {
+            // Check if package is found
+            if (package) {
                 // Update banner titles
                 const bannerTitle2Element = document.querySelector('.banner-detail-title2');
                 const bannerTitleElement = document.querySelector('.banner-detail-title');
                 const bannerTitle3Element = document.querySelector('.banner-detail-title3');
 
-                // Update titles with data from the destination
+                // Update titles with data from the package
                 bannerTitle2Element.textContent = `Paket Wisata`;
-                bannerTitleElement.textContent = destination.nama_pilihan;
-                bannerTitle3Element.textContent = `${destination.durasi} Hari`;
+                bannerTitleElement.textContent = package.nama_paket;
+                bannerTitle3Element.textContent = `${package.durasi} Hari`;
 
-                // Update background with data from the destination
-                document.getElementById('paket').style.backgroundImage = `url(${destination.gambar})`;
+                // Update background with data from the package
+                document.getElementById('paket').style.backgroundImage = `url(${package.gambar})`;
             } else {
-                console.error('Destination not found for ID:', id);
+                console.error('Package not found for ID:', id);
             }
         } else {
             console.error('Invalid API data structure or empty data:', apiData);
@@ -764,11 +763,13 @@ Detail
     // Extract ID from the URL
     const urlBanner = window.location.href;
     const idBanner = urlBanner.substring(urlBanner.lastIndexOf('/') + 1);
+    console.log('Extracted ID:', idBanner); // Debug: Check the extracted ID
 
-    // Make API request to get all destinations
-    axios.get(`http://arshakajaya.test/api/destinasi`)
+    // Make API request to get all packages
+    axios.get('http://arshakajaya.test/api/paketwisata')
         .then(response => {
             const apiData = response.data;
+            console.log('API Response:', apiData); // Debug: Check the API response
 
             // Call the function to update content based on the received data and ID
             updateBannerContent(apiData, idBanner);
@@ -778,33 +779,34 @@ Detail
         });
 </script>
 
+
 <script>
     // Function to update content based on API data
     function updateDestinationContent(apiData, id) {
+        console.log('API Data:', apiData); // Debug: Check the structure of API data
+
         // Check if the API data contains the expected structure
         if (apiData && apiData.data && Array.isArray(apiData.data.data) && apiData.data.data.length > 0) {
-            // Find the destination with matching ID
-            const destination = apiData.data.data.find(dest => dest.id == id);
+            // Find the package with matching ID
+            const package = apiData.data.data.find(paket => paket.id == id);
+            console.log('Found Package:', package); // Debug: Check the found package
 
-            // Check if destination is found
-            if (destination) {
+            // Check if package is found
+            if (package) {
                 // Update tujuan wisata list
                 const tujuanWisataList = document.querySelector('.tujuan-wisata');
 
                 // Clear previous data
                 tujuanWisataList.innerHTML = '';
 
-                // Populate tujuan wisata list
-                for (let i = 1; i <= 5; i++) {
-                    const tujuanWisata = destination['tujuan_wisata' + i];
-                    if (tujuanWisata) {
-                        const listItem = document.createElement('li');
-                        listItem.textContent = tujuanWisata;
-                        tujuanWisataList.appendChild(listItem);
-                    }
-                }
+                // Populate tujuan wisata list with subdestinasi
+                package.subdestinasi.forEach(sub => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = sub.subdestinasi;
+                    tujuanWisataList.appendChild(listItem);
+                });
             } else {
-                console.error('Destination not found for ID:', id);
+                console.error('Package not found for ID:', id);
             }
         } else {
             console.error('Invalid API data structure or empty data:', apiData);
@@ -814,11 +816,13 @@ Detail
     // Extract ID from the URL
     const url = window.location.href;
     const id = url.substring(url.lastIndexOf('/') + 1);
+    console.log('Extracted ID:', id); // Debug: Check the extracted ID
 
-    // Make API request to get all destinations
-    axios.get(`http://arshakajaya.test/api/destinasi`)
+    // Make API request to get all packages
+    axios.get('http://arshakajaya.test/api/paketwisata')
         .then(response => {
             const apiData = response.data;
+            console.log('API Response:', response); // Debug: Check the API response
 
             // Call the function to update content based on the received data and ID
             updateDestinationContent(apiData, id);
@@ -828,77 +832,60 @@ Detail
         });
 </script>
 
+
 <script>
-    // Function to update content based on API data
-    function updateDetailHargaContent(apiData, id) {
-        // Check if the API data contains the expected structure
-        if (apiData && apiData.data && Array.isArray(apiData.data.data) && apiData.data.data.length > 0) {
-            // Find the destination with matching ID
-            const destination = apiData.data.data.find(dest => dest.id == id);
-
-            // Check if destination is found
-            if (destination) {
-                // Update detail harga list
-                const detailHargaList = document.querySelector('.peserta-harga');
-
-                // Clear previous data
-                detailHargaList.innerHTML = '';
-
-                // Populate detail harga list
-                const detailHargaData = [{
-                        range: '2-3',
-                        harga: destination.detail1
-                    },
-                    {
-                        range: '4-6',
-                        harga: destination.detail2
-                    },
-                    {
-                        range: '7-12',
-                        harga: destination.detail3
-                    },
-                    {
-                        range: '12-17',
-                        harga: destination.detail4
-                    },
-                    {
-                        range: '18-23',
-                        harga: destination.detail5
-                    },
-                    {
-                        range: '23-30',
-                        harga: destination.detail6
-                    }
-                ];
-
-                detailHargaData.forEach(item => {
-                    const listItem = document.createElement('li');
-                    listItem.innerHTML = `${item.range} <span class="harga-range">Rp ${item.harga}</span>`;
-                    detailHargaList.appendChild(listItem);
-                });
-            } else {
-                console.error('Destination not found for ID:', id);
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to get the paketwisata ID from the URL parameter
+            function getIdFromUrl() {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get('id');
             }
-        } else {
-            console.error('Invalid API data structure or empty data:', apiData);
-        }
-    }
 
-    // Extract ID from the URL
-    const idDetailHarga = id;
+            // Function to update content based on API data
+            function updateDetailHargaContent(apiData, id) {
+                // Check if the API data contains the expected structure
+                if (apiData && apiData.data && Array.isArray(apiData.data.data) && apiData.data.data.length > 0) {
+                    // Find the package with matching ID
+                    const paketWisata = apiData.data.data.find(paket => paket.id == id);
 
-    // Make API request to get all destinations
-    axios.get(`http://arshakajaya.test/api/destinasi`)
-        .then(response => {
-            const apiData = response.data;
+                    // Check if the package is found
+                    if (paketWisata) {
+                        // Update detail harga list
+                        const detailHargaList = document.querySelector('.peserta-harga');
 
-            // Call the function to update content based on the received data and ID
-            updateDetailHargaContent(apiData, idDetailHarga);
-        })
-        .catch(error => {
-            console.error('Error fetching API data:', error);
+                        // Clear previous data
+                        detailHargaList.innerHTML = '';
+
+                        // Populate detail harga list from price details
+                        paketWisata.price_details.forEach(item => {
+                            const listItem = document.createElement('li');
+                            listItem.innerHTML = `${item.jumlah_peserta} <span class="harga-range">Rp ${item.harga.toLocaleString()}</span>`;
+                            detailHargaList.appendChild(listItem);
+                        });
+                    } else {
+                        console.error('Package not found for ID:', id);
+                    }
+                } else {
+                    console.error('Invalid API data structure or empty data:', apiData);
+                }
+            }
+
+            // Get the paketwisata ID from the URL or use a default one
+            const idDetailHarga = id; // Replace '1' with your default ID if necessary
+
+            // Make API request to get all packages
+            axios.get('http://arshakajaya.test/api/paketwisata')
+                .then(response => {
+                    const apiData = response.data;
+
+                    // Call the function to update content based on the received data and ID
+                    updateDetailHargaContent(apiData, idDetailHarga);
+                })
+                .catch(error => {
+                    console.error('Error fetching API data:', error);
+                });
         });
-</script>
+    </script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -956,17 +943,24 @@ Detail
 
         // Check if the API data contains the expected structure
         if (apiData && apiData.meta && apiData.meta.code === 200 && apiData.data && apiData.data.data && apiData.data.data.length > 0) {
-            // Find the destination with matching ID
-            const destination = apiData.data.data.find(dest => dest.id == urlId);
+            // Find the package with matching ID
+            const paketWisata = apiData.data.data.find(paket => paket.id == urlId);
 
-            // Check if destination is found
-            if (destination) {
-                // Update detail harga content
-                const hargaDetailElement = document.getElementById('harga-detail');
-                const detail1 = destination.detail1;
-                hargaDetailElement.textContent = `Rp ${detail1}`;
+            // Check if package is found
+            if (paketWisata) {
+                // Check if price details exist
+                if (paketWisata.price_details && paketWisata.price_details.length > 0) {
+                    // Get the lowest price
+                    const lowestPrice = paketWisata.price_details[0].harga;
+
+                    // Update detail harga content
+                    const hargaDetailElement = document.getElementById('harga-detail');
+                    hargaDetailElement.textContent = `Rp ${lowestPrice.toLocaleString()}`;
+                } else {
+                    console.error('Price details not found for Package ID:', urlId);
+                }
             } else {
-                console.error('Destination not found for ID:', urlId);
+                console.error('Package not found for ID:', urlId);
             }
         } else {
             console.error('Invalid API data structure or empty data:', apiData);
@@ -987,8 +981,8 @@ Detail
     // Get the ID from the URL
     const urlId = extractIdFromUrl();
 
-    // Make API request to get all destinations
-    axios.get(`http://arshakajaya.test/api/destinasi`)
+    // Make API request to get all packages
+    axios.get(`http://arshakajaya.test/api/paketwisata`)
         .then(response => {
             const apiData = response.data;
             console.log('API Response:', apiData);
@@ -1002,22 +996,33 @@ Detail
 </script>
 
 <script>
-    // Function to handle accordion button click
+   // Function to handle accordion button click
 function handleAccordionButtonClick(button) {
-    const accordionIcon = button.querySelector('.accordion-icon');
-    // Toggle between + and - based on the current icon
-    if (accordionIcon.textContent.trim() === '+') {
-        accordionIcon.textContent = '-';
-    } else {
-        accordionIcon.textContent = '+';
-    }
+    // Disable the button temporarily to prevent double-clicking
+    button.disabled = true;
+    
+    // Toggle the clicked class on the button
+    button.classList.toggle('clicked');
+    
+    // Get the icon element within the button
+    const icon = button.querySelector('.accordion-icon');
+    
+    // Toggle the text content of the icon
+    icon.textContent = button.classList.contains('clicked') ? '-' : '+';
+    
+    // Re-enable the button after a short delay
+    setTimeout(function() {
+        button.disabled = false;
+    }, 400); // Adjust the delay time as needed
 }
 
 // Add event listener to all accordion buttons
-const accordionButtons = document.querySelectorAll('.accordion-button');
-accordionButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        handleAccordionButtonClick(button);
+document.addEventListener('DOMContentLoaded', function() {
+    const accordionButtons = document.querySelectorAll('.accordion-button');
+    accordionButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            handleAccordionButtonClick(button);
+        });
     });
 });
 
